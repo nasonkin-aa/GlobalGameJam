@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class CharacterMoveControler : MonoBehaviour
 {
-
-    Vector2 moveDirection = new Vector2 (0.5f , 0);
+    Vector2 jumpDirection = new Vector2(0, 4);
+    Vector2 moveAcceleration = new Vector2 (0.3f , 0);
+    Vector2 moveSpeed = new Vector2(0.2f, 0);
 
     List<Collider2D> GroundColliders = new List<Collider2D>();
     bool IsGrounded = true;
@@ -18,15 +19,23 @@ public class CharacterMoveControler : MonoBehaviour
     private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.D) && IsGrounded)
-            GetComponent<Rigidbody2D>().velocity += moveDirection;
+        {
+            GetComponent<Rigidbody2D>().position += moveSpeed;
+            GetComponent<Rigidbody2D>().velocity += moveAcceleration;
+        }
+
 
         if (Input.GetKey(KeyCode.A) && IsGrounded)
-            GetComponent<Rigidbody2D>().velocity -= moveDirection;
+        {
+            GetComponent<Rigidbody2D>().position -= moveSpeed;
+            GetComponent<Rigidbody2D>().velocity -= moveAcceleration;
+        }
+
 
         if (Input.GetKey(KeyCode.W) && IsGrounded)
         {
             IsGrounded = false;
-            GetComponent<Rigidbody2D>().velocity += new Vector2(0, 3);
+            GetComponent<Rigidbody2D>().velocity += jumpDirection;
         }
     }
 }
