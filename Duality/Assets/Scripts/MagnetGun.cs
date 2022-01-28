@@ -13,7 +13,6 @@ public class MagnetGun : MonoBehaviour
         _derection = _mousPos - (Vector2)_magnetGun.position;
         _magnetGun.transform.up = _derection;
 
-     
     }
 
     
