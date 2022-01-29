@@ -18,7 +18,6 @@ public class CharacterInputControler : MonoBehaviour
     {
         if (Character)
         {
-            Debug.LogError(Character == null);
             if (Input.GetKey(KeyCode.A))
                 Character.MoveLeft();
             if (Input.GetKey(KeyCode.D))
