@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class CharacterMoveControler : MonoBehaviour
 {
-    Vector2 jumpDirection = new Vector2(0, 4);
-    Vector2 moveAcceleration = new Vector2 (0.3f , 0);
-    Vector2 moveSpeed = new Vector2(0.2f, 0);
+    Vector2 jumpDirection = new Vector2(0, 8);
+    Vector2 moveAcceleration = new Vector2 (0.9f , 0);
+    Vector2 moveSpeed = new Vector2(0.6f, 0);
 
     List<Collider2D> GroundColliders = new List<Collider2D>();
     bool IsGrounded = true;
