@@ -23,8 +23,6 @@ public class Raycast : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Z нажата");
-            //GetKey(KeyCode.Z)){
             if (playerType == Polarity.PolarityType.south)
             {
                 playerType = Polarity.PolarityType.north;
@@ -54,13 +52,13 @@ public class Raycast : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            RaycastHit2D _hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.left), 50, _layerMask);
+            RaycastHit2D _hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.left), 100, _layerMask);
 
             var direction = new Vector2(
-                (_character.transform.position.x - _hit.point.x),
-                 _character.transform.position.y - _hit.point.y);
+                _character.transform.position.x - _hit.point.x,
+                _character.transform.position.y - _hit.point.y);
 
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.left) * 50f, Color.red);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.left) * 100f, Color.red);
             if (_hit)
             {
                 if (_hit.transform.GetComponent<Polarity>() && _hit.transform.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Static)
@@ -74,15 +72,23 @@ public class Raycast : MonoBehaviour
                         PushOrPull(_character.transform, -direction, speed);
                     }
                 }
-                else if (_hit.transform.GetComponent<Polarity>() && _hit.transform.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Dynamic)
+
+                if (_hit.transform.GetComponent<Polarity>() && _hit.transform.GetComponent<Rigidbody2D>().bodyType == RigidbodyType2D.Dynamic)
                 {
                     if (_hit.transform.GetComponent<Polarity>().polarityType == playerType)
                     {
                         PushOrPull(_hit.transform, -direction, speed);
-                    }
-                    if (_hit.transform.GetComponent<Polarity>() && _hit.transform.GetComponent<Polarity>().polarityType != playerType)
+                    } else
+
+                    //if (_hit.transform.GetComponent<Polarity>().polarityType != playerType)
                     {
-                        PushOrPull(_hit.transform, direction, speed);
+                        if (_hit.distance >= 10)
+                        {
+                            PushOrPull(_hit.transform, direction, speed);
+                        } else
+                        {
+                            _hit.transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                        }                                           
                     }
                 }
             }
