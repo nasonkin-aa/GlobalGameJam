@@ -5,9 +5,8 @@ using UnityEngine;
 public class Raycast : MonoBehaviour
 {
     [SerializeField] private GameObject _character;
-    [SerializeField] float speed = 5f;
+    [SerializeField] float speed = 10f;
     [SerializeField] private LayerMask _layerMask;
-
 
     public Rigidbody2D rb;
 
@@ -19,7 +18,6 @@ public class Raycast : MonoBehaviour
     private void Update()
     {
         SwapType();
-        
     }
     private void SwapType()
     {
@@ -45,9 +43,11 @@ public class Raycast : MonoBehaviour
     {
         float _ganRotation = (transform.rotation.eulerAngles.z + rectangle) * (Mathf.PI / 180);
         Vector2 _rayCastVector = new Vector2(Mathf.Cos(_ganRotation), Mathf.Sin(_ganRotation));
-
         transform.GetComponent<Rigidbody2D>().velocity += _rayCastVector * speed;
-      // Debug.DrawLine(_character.transform.position, _character.transform.GetComponent<Rigidbody2D>().velocity, Color.blue, 10f);
+    }
+    private void PushOrPull(Transform _transform,Vector2 direction,float speed)
+    {
+        _transform.transform.GetComponent<Rigidbody2D>().AddForce(direction * speed);
     }
     private void RayCastGun()
     {
@@ -57,7 +57,7 @@ public class Raycast : MonoBehaviour
 
             var direction = new Vector2(
                 (_character.transform.position.x - _hit.point.x),
-                _character.transform.position.y - _hit.point.y);
+                 _character.transform.position.y - _hit.point.y);
 
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up) * 10f, Color.red);
             if (_hit)
@@ -66,30 +66,13 @@ public class Raycast : MonoBehaviour
                 {
                     if ( _hit.transform.GetComponent<Polarity>().polarityType == playerType)
                     {
-
-                        ////float _ganRotation = (_character.transform.rotation.eulerAngles.z + 90f) * (Mathf.PI / 180);
-                        ////Vector2 _rayCastVector = new Vector2(Mathf.Cos(_ganRotation), Mathf.Sin(_ganRotation));
-
-                        ////_character.transform.GetComponent<Rigidbody2D>().velocity += _rayCastVector * speed;
-                        ////Debug.DrawLine(_character.transform.position, _character.transform.GetComponent<Rigidbody2D>().velocity, Color.blue, 10f);
-
-
-                        //transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                        //Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.up, direction)), 205 * Time.deltaTime);
-
-                        //float _ganRotation = (_hit.transform.rotation.eulerAngles.z - 90f) * (Mathf.PI / 180);
-                        //Vector2 _rayCastVector = new Vector2(Mathf.Cos(_ganRotation), Mathf.Sin(_ganRotation));
-
-                        _character.transform.GetComponent<Rigidbody2D>().AddForce((direction * speed));
-                        ////AddObjectVelocity(_character.transform, -90);
-                        
+                        PushOrPull(_character.transform, direction, speed);
+                        //_character.transform.GetComponent<Rigidbody2D>().AddForce(direction * speed);
                     }
                     else
                     {
-                        //.GetComponent<Rigidbody2D>().AddForce(direction * speed);
-                        _character.transform.GetComponent<Rigidbody2D>().AddForce((-direction * speed));
-                       // _character.transform.position = Vector3.MoveTowards(transform.position, _hit.point, Time.deltaTime * speed * 2);
-
+                        PushOrPull(_character.transform, -direction, speed);
+                        //_character.transform.GetComponent<Rigidbody2D>().AddForce((-direction * speed));
                     }
                 }
 
@@ -97,13 +80,13 @@ public class Raycast : MonoBehaviour
                 {
                     if ( _hit.transform.GetComponent<Polarity>().polarityType == playerType)
                     {
-                        _hit.transform.GetComponent<Rigidbody2D>().AddForce((-direction * speed));
-                        //Vector3.MoveTowards(_hit.transform.position, transform.position, Time.deltaTime * speed * 2);  
+                        PushOrPull(_hit.transform, -direction, speed);
+                        //_hit.transform.GetComponent<Rigidbody2D>().AddForce((-direction * speed));
                     }
                     if (_hit.transform.GetComponent<Polarity>() && _hit.transform.GetComponent<Polarity>().polarityType != playerType)
                     {
-                        _hit.transform.GetComponent<Rigidbody2D>().AddForce(direction * speed);
-                         //_hit.transform.position = Vector2.MoveTowards(_hit.transform.position, transform.position, Time.deltaTime * speed * 2);
+                        PushOrPull(_hit.transform, direction, speed);
+                        //_hit.transform.GetComponent<Rigidbody2D>().AddForce(direction * speed);
                     }
                 }
             }
