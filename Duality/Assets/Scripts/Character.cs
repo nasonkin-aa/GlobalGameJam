@@ -67,7 +67,6 @@ public class Character : MonoBehaviour
         _moveState = MoveState.Walk;
         if (_directionState == DirectionState.Right)
         {
-            _transform.localScale = new Vector3(-_transform.localScale.x, _transform.localScale.y, _transform.localScale.z);
             _directionState = DirectionState.Left;
         }
         _walkTime = _walkCooldown;
@@ -81,7 +80,6 @@ public class Character : MonoBehaviour
         _moveState = MoveState.Walk;     
         if (_directionState == DirectionState.Left)     
         {
-            _transform.localScale = new Vector3(-_transform.localScale.x, _transform.localScale.y, _transform.localScale.z);
             _directionState = DirectionState.Right;
         }
         _walkTime = _walkCooldown;

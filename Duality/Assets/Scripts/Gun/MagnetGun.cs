@@ -11,7 +11,7 @@ public class MagnetGun : MonoBehaviour
     {
         Vector2 _mousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _derection = _mousPos - (Vector2)_magnetGun.position;
-        _magnetGun.transform.up = _derection;
+        _magnetGun.transform.right = -_derection;
 
     }
 
