@@ -8,11 +8,13 @@ public class ScenesLoader : MonoBehaviour
     [SerializeField] int _nextSceneNumber = 0;
     [SerializeField] Transform _character;
 
-    private void FixedUpdate()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        float distance = Vector3.Distance(transform.position, _character.transform.position);
-        if (distance <= 5)
+        Debug.Log("sda");
+        if (collision.transform == _character)
+        {
             SceneManager.LoadScene(_nextSceneNumber);
 
+        }
     }
 }
