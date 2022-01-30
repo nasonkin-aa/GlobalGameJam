@@ -26,14 +26,10 @@ public class Raycast : MonoBehaviour
             if (playerType == Polarity.PolarityType.south)
             {
                 playerType = Polarity.PolarityType.north;
-                _character.GetComponent<SpriteRenderer>().color = Color.red;
-                Debug.Log(playerType);
             }
             else if (playerType == Polarity.PolarityType.north)
             {
                 playerType = Polarity.PolarityType.south;
-                _character.GetComponent<SpriteRenderer>().color = Color.blue;
-                Debug.Log(playerType);
             }
         }
     }
