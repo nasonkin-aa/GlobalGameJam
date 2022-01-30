@@ -2673,6 +2673,7 @@ GameObject:
   - component: {fileID: 1417547864}
   - component: {fileID: 1417547865}
   - component: {fileID: 1417547866}
+  - component: {fileID: 1417547867}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -2794,6 +2795,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163647c04d4520b4f8bbe35685146865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpDirection: {x: 0, y: 25}
+  moveAcceleration: {x: 7, y: 0}
+  moveSpeed: {x: 0.8, y: 0}
+  maxJumpAcceleration: {x: 22, y: 0}
 --- !u!70 &1417547866
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2810,6 +2815,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 5, y: 4.9999995}
   m_Direction: 0
+--- !u!114 &1417547867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417547859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 163647c04d4520b4f8bbe35685146865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpDirection: {x: 0, y: 25}
+  moveAcceleration: {x: 7, y: 0}
+  moveSpeed: {x: 0.8, y: 0}
+  maxJumpAcceleration: {x: 22, y: 0}
 --- !u!1 &1540635104
 GameObject:
   m_ObjectHideFlags: 0
