@@ -11,6 +11,12 @@ public class Raycast : MonoBehaviour
     public Rigidbody2D rb;
 
     Polarity.PolarityType playerType = Polarity.PolarityType.south;
+
+    private void Start()
+    {
+        _character.GetComponent<SpriteRenderer>().color = Color.cyan;
+
+    }
     private void FixedUpdate()
     {
         RayCastGun();
@@ -26,9 +32,13 @@ public class Raycast : MonoBehaviour
             if (playerType == Polarity.PolarityType.south)
             {
                 playerType = Polarity.PolarityType.north;
+                _character.GetComponent<SpriteRenderer>().color = Color.red;
+
             }
             else if (playerType == Polarity.PolarityType.north)
             {
+                _character.GetComponent<SpriteRenderer>().color = Color.cyan;
+
                 playerType = Polarity.PolarityType.south;
             }
         }

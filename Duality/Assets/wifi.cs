@@ -20,10 +20,7 @@ public class wifi : MonoBehaviour
     {
         SwapType();
     }
-    private void Start()
-    {
-        wifiPrefab.GetComponent<SpriteRenderer>().color = Color.red;
-    }
+    
     private void SwapType()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -31,12 +28,10 @@ public class wifi : MonoBehaviour
 
             if (Chek)
             {
-                wifiPrefab.GetComponent<SpriteRenderer>().color = Color.red;
                 Chek = false;
             }
             else
             {
-                wifiPrefab.GetComponent<SpriteRenderer>().color = Color.gray;
                 Chek = true;
             }
                 
