@@ -46,7 +46,7 @@ public class CharacterMoveControler : MonoBehaviour
 
     private void OnGround()
     {
-        //TO DO: Нельзя двигаться на ящиках, переписать эту говну, убрать разгон при прыжках
+        //TO DO: РќРµР»СЊР·СЏ РґРІРёРіР°С‚СЊСЃСЏ РЅР° СЏС‰РёРєР°С…, РїРµСЂРµРїРёСЃР°С‚СЊ СЌС‚Сѓ РіРѕРІРЅСѓ, СѓР±СЂР°С‚СЊ СЂР°Р·РіРѕРЅ РїСЂРё РїСЂС‹Р¶РєР°С…
         RaycastHit2D _hit = Physics2D.Raycast(transform.position + new Vector3 (-4, 0, 0), transform.TransformDirection(Vector2.down),6.5f , _layerMask);
         RaycastHit2D _hit1 = Physics2D.Raycast(transform.position + new Vector3(4, 0, 0), transform.TransformDirection(Vector2.down), 6.5f, _layerMask);
     
